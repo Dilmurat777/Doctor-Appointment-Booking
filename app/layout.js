@@ -2,7 +2,8 @@ import { Outfit } from 'next/font/google';
 import './globals.css';
 import Header from './_components/Header';
 import Footer from './_components/Footer';
-
+import { Providers } from './providers';
+import { Toaster } from "@/components/ui/sonner"
 const outfit = Outfit({
   subsets: ['latin'],
   variable: '--font-montserrat', 
@@ -20,10 +21,13 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${outfit.className} antialiased`}>
         <div className='md: px-5 max-w-6xl mx-auto'>
+          <Providers>
           <Header />
-          {children}
+            {children}
+          </Providers>
         </div>
           <Footer />
+            <Toaster />
       </body>
     </html>
   );
