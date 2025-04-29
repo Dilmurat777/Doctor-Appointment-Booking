@@ -1,17 +1,25 @@
-'use client'
-import React, { useEffect } from 'react'
-import { use } from 'react'; // Обязательно импортировать
+'use client';
+import DoctorList from '@/app/_components/DoctorList';
+import GlobalApi from '@/app/_utils/Global.Api';
+import React, { use, useEffect, useState } from 'react';
 function Search({ params }) {
-	const routeParams = use(params);
-	useEffect(() => {
-		console.log(routeParams.cname);
-		
-	}, [])
+  const getParams = use(params);
+  const [doctorList, setDoctorList] = useState([]);
+  
+  useEffect(() => {
+	  getDoctorList();
+	  console.log(getParams.cname);
+	  
+  }, []);
+
+  const getDoctorList = () => {
+    GlobalApi.getDoctorByCategory(getParams.cname).then((res) => setDoctorList(res.data.data));
+  };
   return (
-	<div>
-	  <h2>Search</h2>
-	</div>
-  )
+    <div className='mt-5'>
+      <DoctorList heading={getParams.cname} doctorList={doctorList} />
+    </div>
+  );
 }
 
-export default Search
+export default Search;
