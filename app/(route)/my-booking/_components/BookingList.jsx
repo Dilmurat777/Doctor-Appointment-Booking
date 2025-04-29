@@ -9,7 +9,7 @@ import { toast } from 'sonner';
 function BookingList({ booking, expire, upDateRecord, setBooking }) {
   const deleteBooking = (item) => {
     console.log(item);
-
+	console.log(booking)
     GlobalApi.cancelBooking(item.id)
       .then((res) => {
         console.log('Booking cancelled successfully:', res);
@@ -37,7 +37,7 @@ function BookingList({ booking, expire, upDateRecord, setBooking }) {
               alt="doctor"
               className="rounded-full w-[100px] h-[100px] object-contain"
               priority
-            />
+			  />
             <div className="flex flex-col gap-2 w-full">
               <h2 className="text-lg font-semibold flex items-center gap-2 justify-between ">
                 {item?.DoctorName}

@@ -8,6 +8,7 @@ import BookingList from './_components/BookingList';
 function MyBooking() {
   const { user } = useKindeBrowserClient();
 	const [booking, setBooking] = React.useState([]);
+	console.log(booking);
 	
   useEffect(() => {
     user && getBooking();
